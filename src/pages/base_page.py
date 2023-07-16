@@ -6,6 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException, TimeoutException
 
 
 class BasePage(Singleton):
@@ -21,18 +22,35 @@ class BasePage(Singleton):
         self._common_locators = common_locators.GeneralLocators()
 
     def find_visible(self, locator):
-        return self._wait.until(ec.visibility_of_element_located((By.XPATH, locator)))
+        try:
+            element = self._wait.until(ec.visibility_of_element_located((By.XPATH, locator)))
+        except NoSuchElementException as err1:
+            raise err1
+        except TimeoutException as err2:
+            raise err2
+        else:
+            return element
+
+    def find_xpath(self, locator):
+        try:
+            element = self._driver.find_element(By.XPATH, locator)
+        except NoSuchElementException as err1:
+            raise err1
+        except TimeoutException as err2:
+            raise err2
+        else:
+            return element
 
     def scroll_to_footer(self):
-        body = self._driver.find_element(By.XPATH, self._common_locators.body)
+        body = self.find_xpath(self._common_locators.body)
         body.send_keys(Keys.END)
 
     def scroll_to_header(self):
-        body = self._driver.find_element(By.XPATH, self._common_locators.body)
+        body = self.find_xpath(self._common_locators.body)
         body.send_keys(Keys.HOME)
 
     def scroll_to_element(self, locator):
-        element = self._driver.find_element(By.XPATH, locator)
+        element = self.find_xpath(locator)
         self._driver.execute_script("arguments[0].scrollIntoView();", element)
 
     def get_title(self):
@@ -42,4 +60,5 @@ class BasePage(Singleton):
         return self._driver.current_url
 
     def open_main_page(self):
-        self._wait.until(ec.visibility_of_element_located((By.XPATH, self._common_locators.logo_button))).click()
+        element = self.find_visible(self._common_locators.logo_button)
+        element.click()
