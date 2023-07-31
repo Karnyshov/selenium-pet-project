@@ -6,9 +6,9 @@ pipeline {
                 sh 'python --version'
                 sh 'echo "Installing all needed dependencies..."'
                 sh 'pip3 install virtualenv'
-                sh 'virtualenv venv'
+                sh 'virtualenv venv -p python3'
                 sh 'source venv/bin/activate'
-                sh 'pip3 install -r requirements.txt --user'
+                sh 'pip install -r requirements.txt --user'
             }
         }
     }
