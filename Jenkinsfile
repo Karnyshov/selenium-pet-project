@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh 'python --version'
                 sh 'echo "Installing all needed dependencies..."'
-                sh 'sudo -H pip install -r requirements.txt --user'
+                sh 'pip install -r requirements.txt'
                 sh 'pytest test'
             }
         }
