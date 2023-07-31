@@ -4,8 +4,11 @@ pipeline {
         stage('build') {
             steps {
                 sh 'python --version'
+                sh 'pip3 install virtualenv'
+                sh 'virtualenv venv -p python3'
+  -             sh 'source venv/bin/activate'
                 sh 'echo "Installing all needed dependencies..."'
-                sh 'pip install -U -r requirements.txt'
+                sh 'pip3 install -r requirements.txt --user'
                 sh 'pytest test'
             }
         }
