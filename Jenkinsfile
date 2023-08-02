@@ -5,6 +5,9 @@ pipeline {
             steps {
                 sh 'python --version'
                 sh 'echo "Installing all needed dependencies..."'
+                sh 'cd ~'
+                sh 'mkdir pet'
+                sh 'cd pet'
                 sh 'python3 -m venv test-env'
                 sh '. test-env/bin/activate'
                 sh 'pip3 install -r requirements.txt --user'
