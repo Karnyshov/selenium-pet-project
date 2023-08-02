@@ -5,9 +5,7 @@ pipeline {
             steps {
                 sh 'python --version'
                 sh 'echo "Installing all needed dependencies..."'
-                sh 'cd /tmp'
-                sh 'pwd'
-                sh 'whoami'
+                sh 'cd ../../tmp'
                 sh 'rm -rf pet'
                 sh 'mkdir pet'
                 sh 'cd pet'
