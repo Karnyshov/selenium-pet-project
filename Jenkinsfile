@@ -6,6 +6,7 @@ pipeline {
                 sh 'python --version'
                 sh 'echo "Installing all needed dependencies..."'
                 sh 'cd /tmp'
+                sh 'rm -rf pet'
                 sh 'mkdir pet'
                 sh 'cd pet'
                 sh 'python3 -m venv test-env'
