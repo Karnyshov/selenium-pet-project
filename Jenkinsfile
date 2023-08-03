@@ -8,7 +8,7 @@ pipeline {
                 sh 'pwd && ls -al'
                 sh 'python -m venv test-env'
                 sh '. test-env/bin/activate'
-                sh 'pip3 install -r requirements.txt --user'
+                sh 'pip3 install -r requirements.txt'
                 sh 'pytest test'
             }
         }
