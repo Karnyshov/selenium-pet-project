@@ -7,9 +7,7 @@ pipeline {
                 sh 'echo "Installing all needed dependencies..."'
                 sh 'pwd && ls -al'
                 sh 'python -m venv test-env'
-                sh '. test-env/bin/activate'
-                sh 'pip install -r requirements.txt --user'
-                sh 'pytest test'
+                sh '. test-env/bin/activate && pip install -r requirements.txt && pytest test'
             }
         }
     }
