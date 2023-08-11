@@ -1,5 +1,6 @@
 import pytest
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
 from src.pages.main_page import MainPage
 
 
@@ -17,7 +18,8 @@ def browser(request):
     if mode == "Chrome":
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
-        driver = webdriver.Chrome(options=options)
+        service = ChromeService(executable_path="./chromedriver.exe")
+        driver = webdriver.Chrome(options=options, service=service)
         yield driver
         driver.quit()
     elif mode == "Firefox":
