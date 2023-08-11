@@ -18,7 +18,7 @@ def browser(request):
     if mode == "Chrome":
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
-        service = ChromeService(executable_path="/chromedriver.exe")
+        service = ChromeService(executable_path="./chromedriver")
         driver = webdriver.Chrome(options=options, service=service)
         yield driver
         driver.quit()
