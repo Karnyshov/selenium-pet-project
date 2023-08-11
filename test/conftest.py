@@ -1,7 +1,6 @@
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
 from src.pages.main_page import MainPage
 
 
@@ -19,8 +18,10 @@ def browser(request):
     if mode == "Chrome":
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
-
-        driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        service = ChromeService(executable_path="./chromedriver")
+        driver = webdriver.Chrome(options=options, service=service)
         yield driver
         driver.quit()
     elif mode == "Firefox":
