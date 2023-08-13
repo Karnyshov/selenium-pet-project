@@ -13,19 +13,8 @@ pipeline {
                 sh 'python -m venv test-env'
                 sh '. test-env/bin/activate && pip install -r requirements.txt && chmod 777 ./chromedriver && pytest --alluredir=./allure_results'
                 stash name: 'allure_results', includes: 'allure_results/*'
+                }
             }
-        }
-//         stage('Reports') {
-//             steps {
-//                 allure([
-//       	            includeProperties: false,
-//       	            jdk: '',
-//       	            properties: [],
-//       	            reportBuildPolicy: 'ALWAYS',
-//       	            results: [[path: './allure_results']]
-//     	            ])
-//   	            }
-//             }
         }
     post {
         always {
