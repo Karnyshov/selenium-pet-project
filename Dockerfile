@@ -12,6 +12,6 @@ RUN apt-get -y update
 # Magic happens
 RUN apt-get install -y google-chrome-stable
 
-RUN apt-add-repository ppa:qameta/allure
+RUN add-apt-repository ppa:qameta/allure
 
 RUN apt-get install allure
