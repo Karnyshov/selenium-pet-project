@@ -29,7 +29,7 @@ pipeline {
         }
     post {
         always {
-            unstash 'allure-results'
+            unstash 'allure_results'
             script{
                 allure([
                     includeProperties: false,
