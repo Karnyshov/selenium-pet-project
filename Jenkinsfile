@@ -26,8 +26,9 @@ pipeline {
 //   	            }
 //             }
         }
-        post {
-            always {
-                sh 'allure serve allure_results'
+    post {
+        always {
+            sh 'allure serve allure_results'
         }
     }
+}
