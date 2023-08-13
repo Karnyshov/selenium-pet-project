@@ -7,7 +7,7 @@ pipeline {
                 sh 'mkdir -p allure_results'
                 sh 'echo "Installing all needed dependencies..."'
                 sh 'pwd && ls -al'
-                sh 'apt-add-repository ppa:qameta/allure && apt-get update && apt-get install allure'
+                // sh 'apt-add-repository ppa:qameta/allure && apt-get update && apt-get install allure'
                 // sh 'apt-get update'
                 // sh 'apt-get install allure'
                 sh 'python -m venv test-env'
