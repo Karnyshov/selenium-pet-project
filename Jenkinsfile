@@ -15,7 +15,6 @@ pipeline {
                 stash name: 'allure_results', includes: 'allure_results/*'
                 }
             }
-        }
         stage('reports') {
             steps {
                 sh 'pwd'
