@@ -12,13 +12,13 @@ pipeline {
                 // sh 'apt-get install allure'
                 sh 'python -m venv test-env'
                 sh '. test-env/bin/activate && pip install -r requirements.txt && chmod 777 ./chromedriver && pytest --alluredir=./allure_results'
-                stash name: 'allure_results', includes: './allure_results/*'
+                // stash name: 'allure_results', includes: './allure_results/*'
                 }
             }
         stage('reports') {
             steps {
                 sh 'pwd'
-                unstash allure_results
+                // unstash allure_results
                 script {
                     allure([
                         includeProperties: false,
