@@ -18,6 +18,7 @@ pipeline {
         stage('reports') {
             steps {
                 sh 'pwd'
+                unstash allure_results
                 script {
                     allure([
                         includeProperties: false,
