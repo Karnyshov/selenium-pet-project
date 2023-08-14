@@ -13,6 +13,7 @@ pipeline {
             }
         stage('reports') {
             steps{
+                sh 'pwd && ls -al'
                 script {
                     allure([
                         includeProperties: false,
