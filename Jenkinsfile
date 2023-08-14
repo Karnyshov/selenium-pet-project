@@ -16,16 +16,16 @@ pipeline {
                 }
             }
         }
-    post {
-        always {
-            unstash 'allure_results'
-            script{
-                allure([
-                    includeProperties: false,
-                    jdk: '',
-                    properties: [],
-                    reportBuildPolicy: 'ALWAYS',
-                    results: [[path: 'allure_results']]
+        stage('reports') {
+            steps {
+                sh 'pwd'
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'allure_results']]
             ])
             }
         }
